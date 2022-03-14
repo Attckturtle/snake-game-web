@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Days+One&display=swap");
+
+* {
+  font-family: "Days One", sans-serif;
+}
+
+body {
+    background-color: rgb(78, 77, 77);
+    margin: 0;
+    text-align: center;
+  }
+
+#snakeHead {
+  height: 10px;
+  width: 10px;
+  background-color: rgb(255, 255, 255);
+}
+
+#apple {
+  height: 10px;
+  width: 10px;
+  background-color: red;
+}
