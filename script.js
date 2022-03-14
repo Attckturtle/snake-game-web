@@ -9,16 +9,21 @@ const boardHeight = 200;
 const unitWidth = 10;
 const unitHeight = 10;
 
-let applesY;
-let applesX;
+let snakeX;
+let snakeY;
 
-setUp();
+let applesX;
+let applesY;
+
+let score = 0;
+
 function setUp() {
     gameOver = false;
     movingRight = true;
     setTimeout(() => {
         while (!gameOver) {
             moveSnake();
+            generateApples();
         }
     }, 1000);
 }
@@ -47,6 +52,8 @@ function moveSnake() {
                 console.log("do nothing");
                 break;
         }
+        detectAppleCollisions();
+        detectCollisions();
     })
 }
 
@@ -58,11 +65,17 @@ function generateApples() {
 }
 
 function detectCollisions() {
-   // if () {
-
-    //}
+    //check if snakeX is 0 or the same amount of pixels of the box + the left: css value of the box
+    //do same for snakeY
 }
 
 function detectAppleCollisions() {
+    if (applesX == snakeX && applesY == snakeY) {
+        score++
+        setScore()
+    }
+}
 
+function setScore() {
+    document.getElementById("scoreBoard").innerHTML = "score";
 }

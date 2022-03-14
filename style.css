@@ -10,6 +10,14 @@ body {
     text-align: center;
   }
 
+#board {
+  height: 200;
+  width: 200;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(0, 0, 0);
+}
+
 #snakeHead {
   height: 10px;
   width: 10px;
