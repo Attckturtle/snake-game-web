@@ -1,31 +1,41 @@
 let gameOver = false;
+let hasFruitBeenEaten = false;
 
 let snakeHeadId = document.getElementById("snakeHead");
 let applesId = document.getElementById("apples");
 
-const boardWidth = 200;
-const boardHeight = 200;
+const boardWidth = 2000;
+const boardHeight = 2000;
 
 const unitWidth = 10;
 const unitHeight = 10;
 
 let snakeX;
 let snakeY;
+let currentDirection = 'U';
 
 let applesX;
 let applesY;
 
 let score = 0;
 
+let lastRenderedTime = 0;
+
+window.addEventListener('keydown', (event) => {
+    currentDirection = event.key;
+    currentDirection = currentDirection.toUpperCase();
+})
+
 function setUp() {
     gameOver = false;
     movingRight = true;
-    setTimeout(() => {
-        while (!gameOver) {
-            moveSnake();
-            generateApples();
-        }
-    }, 1000);
+    setInterval(() => {
+        moveSnake();
+        //generateApples();
+        detectAppleCollisions();
+        detectCollisions();
+        setScore();
+    }, 1000)
 }
 
 function startSnake() {
@@ -33,45 +43,43 @@ function startSnake() {
 }
 
 function moveSnake() {
-    console.log("moving snake");
-    this.addEventListener('keypress', keyPressed => {
-        switch (keyPressed.keyCode) {
-            case 87:
+        switch (currentDirection) {
+            case "W":
                 console.log("up");
                 break;
-            case 65:
+            case "A":
                 console.log("left");
                 break;
-            case 83:
+            case "S":
                 console.log("down");
                 break;
-            case 68:
+            case "D":
                 console.log("right");
-                break;
-            default:
-                console.log("do nothing");
                 break;
         }
         detectAppleCollisions();
         detectCollisions();
-    })
 }
 
 function generateApples() {
-    applesX = Math.random(boardWidth);
-    applesY = Math.random(boardHeight);
-    Math.floor(applesX);
-    Math.floor(applesY);
+    if (hasFruitBeenEaten) {
+        applesX = Math.random(boardWidth);
+        applesY = Math.random(boardHeight);
+        Math.floor(applesX);
+        Math.floor(applesY);
+        applesId.style.top = applesX;
+        applesId.style.left = applesY;
+        hasFruitBeenEaten = false;
+    }
 }
 
 function detectCollisions() {
-    //check if snakeX is 0 or the same amount of pixels of the box + the left: css value of the box
-    //do same for snakeY
 }
 
 function detectAppleCollisions() {
-    if (applesX == snakeX && applesY == snakeY) {
+    if (applesX == snakeX && applesY == snakeY && !hasFruitBeenEaten) {
         score++
+        hasFruitBeenEaten = true;
         setScore()
     }
 }

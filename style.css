@@ -11,8 +11,8 @@ body {
   }
 
 #board {
-  height: 200;
-  width: 200;
+  height: 500px;
+  width: 500px;
   border-width: 1px;
   border-style: solid;
   border-color: rgb(0, 0, 0);
