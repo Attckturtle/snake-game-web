@@ -9,23 +9,3 @@ body {
     margin: 0;
     text-align: center;
   }
-
-#board {
-  height: 500px;
-  width: 500px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(0, 0, 0);
-}
-
-#snakeHead {
-  height: 10px;
-  width: 10px;
-  background-color: rgb(255, 255, 255);
-}
-
-#apple {
-  height: 10px;
-  width: 10px;
-  background-color: red;
-}
