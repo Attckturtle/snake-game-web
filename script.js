@@ -1,32 +1,64 @@
 let gameOver = false;
-let unitHeight = 5;
-let unitWidth = 5;
+let unitHeight = 20;
+let unitWidth = 20;
 
-class snake {
-    constructor() {
-        this.x = 250;
-        this.y = 250;
-        this.velocityX = 0;
-        this.velocityY = 0;
-        this.height = unitHeight;
-        this.width = unitWidth;
+let keyPressed;
+
+let snake1;
+
+function Snake() {
+    this.x = 250;
+    this.y = 250;
+    this.velocityX = 1;
+    this.velocityY = 0;
+    this.height = unitHeight;
+    this.width = unitWidth;
+
+    this.move = function () {
+        this.x += this.velocityX
+        this.y += this.velocityY
     }
 
-    move() {
-        this.x += Math.random(-1, 1);
-        this.x += Math.random(-1, 1);
-        this.style.top = this.x;
-        this.style.left = this.y
+    this.show = function () {
+        fill(255);
+        rect(this.x, this.y, this.width, this.height);
     }
 }
 
-let snake1 = new snake();
-console.log(ball1);
+this.addEventListener('keypress', event => {
+    event.key = keyPressed;
+    console.log(keyPressed);
+    nextDirectionDeterminer(keyPressed);
+})
 
-function setup() {
-    createCanvas(500, 500);
+function nextDirectionDeterminer(thePressed) {
+    switch (thePressed) {
+        case "w":
+            snake.velocityX = 0;
+            snake.velocityY = 1;
+            break;
+        case "a":
+            snake.velocityX = -1;
+            snake.velocityY = 0;
+            break;
+        case "s":
+            snake.velocityX = 0;
+            snake.velocityY = -1;
+            break;
+        case "d":
+            snake.velocityX = 1;
+            snake.velocityY = 0;
+            break;
+    }
 }
 
 function draw() {
-    snake1.move();
+    background(51);
+    snake.move();
+    snake.show();
+}
+
+function setup() {
+    snake = new Snake();
+    createCanvas(600, 600);
 }
